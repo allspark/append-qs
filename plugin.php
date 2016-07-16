@@ -17,14 +17,14 @@ function append_qs_redirect($url) {
     parse_str($_SERVER['QUERY_STRING'], $query);
 
     if (isset($query)) {
+	$appendme .= '?';
         $it = new RecursiveIteratorIterator(new RecursiveArrayIterator($query));
         foreach ($it as $key=>$val) {
-                echo $key.": ".$val."<br>";
                 if (isset($key)) {
-                    $appendme = $appendme.$key;
+                    $appendme .= $key;
                 }
                 if (isset($val)) {
-                    $appendme = $appendme.$val;
+                    $appendme .= '='.$val;
                 }
         }
         return $url.$appendme;
